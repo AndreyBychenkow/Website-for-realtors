@@ -11,6 +11,7 @@ class FlatAdmin(admin.ModelAdmin):
     list_editable = ['new_building']
 
     list_filter = ['new_building', 'town', 'construction_year', 'active']
+    raw_id_fields = ['likes']
 
 
 class ComplaintAdmin(admin.ModelAdmin):
