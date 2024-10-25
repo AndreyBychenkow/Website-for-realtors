@@ -20,11 +20,5 @@ class ComplaintAdmin(admin.ModelAdmin):
     search_fields = ['user__username', 'flat__address', 'message']
 
 
-class ComplaintAdmin(admin.ModelAdmin):
-    raw_id_fields = ['user', 'flat'] 
-    list_display = ['user', 'flat', 'created_at']
-    search_fields = ['user__username', 'flat__address', 'message']
-
-
 admin.site.register(Flat, FlatAdmin)
 admin.site.register(Complaint, ComplaintAdmin)
