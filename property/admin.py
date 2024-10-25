@@ -14,7 +14,7 @@ class FlatAdmin(admin.ModelAdmin):
 
 
 class ComplaintAdmin(admin.ModelAdmin):
-    raw_id_fields = ['user', 'flat']  # Используем raw_id_fields для удобства
+    raw_id_fields = ['user', 'flat']
     list_display = ['user', 'flat', 'created_at']
     search_fields = ['user__username', 'flat__address', 'message']
 
