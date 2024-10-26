@@ -17,7 +17,7 @@ def transfer_owners(apps, schema_editor):
 
     owner_dict = {}
 
-    for flat in Flat.objects.all():
+    for flat in Flat.objects.all().iterator():
 
         if flat.owner not in owner_dict:
             owner_dict[flat.owner] = Owner.objects.create(
@@ -25,7 +25,6 @@ def transfer_owners(apps, schema_editor):
                 phone_number=flat.owners_phonenumber,
                 normalized_phone=normalize_phone(flat.owners_phonenumber)
             )
-
         owner_dict[flat.owner].flats.add(flat)
 
 
@@ -37,3 +36,4 @@ class Migration(migrations.Migration):
     operations = [
         migrations.RunPython(transfer_owners),
     ]
+
