@@ -1,14 +1,14 @@
-from django.db import migrations
+from django.db import migrations, models
 
 
 def fill_new_building(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
-    for flat in Flat.objects.all():
-        if flat.construction_year is not None:
-            flat.new_building = flat.construction_year >= 2015
-        else:
-            flat.new_building = False
-        flat.save()
+
+    Flat.objects.filter(construction_year__isnull=False).update(
+        new_building=models.F('construction_year') >= 2015
+    )
+
+    Flat.objects.filter(construction_year__isnull=True).update(new_building=False)
 
 
 class Migration(migrations.Migration):
