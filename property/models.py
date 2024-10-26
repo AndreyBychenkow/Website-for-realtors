@@ -59,8 +59,8 @@ class Flat(models.Model):
 
 
 class Complaint(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
-    flat = models.ForeignKey('property.Flat', on_delete=models.CASCADE, verbose_name='Квартира')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь', related_name='complaints')
+    flat = models.ForeignKey('property.Flat', on_delete=models.CASCADE, verbose_name='Квартира', related_name='complaints')
     message = models.TextField('Сообщение о жалобе', help_text='Опишите вашу жалобу')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
 
